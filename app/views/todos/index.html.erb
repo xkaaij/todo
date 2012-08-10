@@ -6,9 +6,13 @@ No todos yet
 <hr>
 <%= link_to "Create a new todo", new_todo_path %>
 
-<ul>
+<ul class="todos">
 <% @todos.each do |todo| %>
-  <li><%=	todo.name %><%= button_to "delete", todo, :method => :delete %></li>
+  <li id="todo-<%= todo.id %>">
+    <%= "Complete" if todo.completed == true %>
+    <input type="checkbox" class="complete" name="complete" data-complete-url="<%= complete_todo_path(todo) %>">
+    <%=	todo.name %><%= button_to "delete", todo, :method => :delete %>
+  </li>
 <% end %>
 </ul>
 

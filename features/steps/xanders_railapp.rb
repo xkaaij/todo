@@ -1,6 +1,6 @@
 class XandersRailapp < Spinach::FeatureSteps
   When 'I go to the list of all todos' do
-  	visit todos_path
+    visit todos_path
   end
 
   Then 'I should see "No todos yet"' do
@@ -9,13 +9,13 @@ class XandersRailapp < Spinach::FeatureSteps
 
   Given 'there are 6 todos in the system' do
     6.times do |i|
-    	Todo.create(:name => "Todo #" + i.to_s)
+      Todo.create(:name => "Todo #" + i.to_s)
     end
   end
 
   Then 'I should see those 6 todos' do
     Todo.all.each do |todo|
-    	page.should have_content(todo.name)
+      page.should have_content(todo.name)
     end
   end
 
@@ -44,4 +44,17 @@ class XandersRailapp < Spinach::FeatureSteps
   Given 'there are no todos yet' do
     Todo.delete_all
   end
+
+  And 'I mark the first one as complete' do
+    within "#todo-1" do
+      check "complete"
+    end
+  end
+
+  Then 'I should see "Completed"' do
+    within "#todo-1" do
+      page.should have_content "Complete"
+    end
+  end
+
 end
