@@ -28,6 +28,7 @@ group :test, :development do
 	gem 'spinach-rails'
 	gem 'launchy'
 	gem 'rspec-rails'
+  gem 'database_cleaner'
 end
 
 # To use ActiveModel has_secure_password
